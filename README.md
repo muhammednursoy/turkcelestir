@@ -1,21 +1,23 @@
-# turkce-duzelt
+# turkcelestir
 
-macOS'ta İngilizce klavyeyle yazılmış, diakritiksiz Türkçe metni tek kısayolla doğru
-karakterli hâline çevirir: metni seç, **⌥⇧T** (Option+Shift+T), metin yerinde değişir.
+macOS'ta İngilizce klavyeyle yazılmış, Türkçe karakterleri olmayan metni tek kısayolla
+doğru hâline çevirir: metni seç, **⌥⇧T** (Option+Shift+T), metin yerinde değişir.
 
-> `ingilizce klavye kullaniyorum, uc gun sonra gorusuruz`
-> → `ingilizce klavye kullanıyorum, üç gün sonra görüşürüz`
+> `turkcelestir: pijamali hasta, yagiz sofore cabucak guvendi`
+> → `türkçeleştir: pijamalı hasta, yağız şoföre çabucak güvendi`
 
 Teams, Slack, tarayıcı, IDE, Notes: metin düzenlenebilen her uygulamada çalışır, çünkü
 uygulamanın kendisine değil panoya ve ⌘C/⌘V tuşlarına dayanır.
 
 *English: one-hotkey Turkish diacritics restoration for macOS (select text, press ⌥⇧T).
-Built on Hammerspoon and Deniz Yüret's deasciifier; no Python or Node required.*
+Built on Hammerspoon and [Deniz Yüret's deasciifier](https://github.com/emres/turkish-mode);
+no Python or Node required.*
 
 ## Nasıl çalışır
 
 1. ⌥⇧T'ye basınca [Hammerspoon](https://www.hammerspoon.org) seçili metni ⌘C ile kopyalar.
-2. Metin, Deniz Yüret'in deasciify algoritmasının JavaScript portundan (`deasciify.js`) geçer.
+2. Metin, [Deniz Yüret](https://github.com/emres/turkish-mode)'in deasciify algoritmasının
+   [JavaScript portundan](https://github.com/meacer/deasciifier) (`deasciify.js`) geçer.
    Dosya macOS'un yerleşik JavaScript for Automation motoruyla (`/usr/bin/osascript -l JavaScript`)
    çalışır; ek bir çalışma zamanı kurulmaz.
 3. Sonuç ⌘V ile seçimin yerine yapıştırılır, 300 ms sonra eski pano içeriği geri yüklenir.
@@ -39,8 +41,8 @@ dönüştürücüyü tek başına test eder ve her adımda ne çalıştırdığ�
 ### Elle
 
 ```bash
-git clone https://github.com/muhammednursoy/turkce-duzelt.git
-cd turkce-duzelt
+git clone https://github.com/muhammednursoy/turkcelestir.git
+cd turkcelestir
 ```
 
 Dönüştürücüyü hiçbir şey kurmadan dene:
@@ -77,7 +79,7 @@ killall Hammerspoon; open -a Hammerspoon
 ```
 
 Hammerspoon menü çubuğundan Console'u aç; `hs.accessibilityState()` `true` dönmeli.
-Bir metin alanında diakritiksiz Türkçe yaz, seç, ⌥⇧T.
+Bir metin alanında Türkçe karakter kullanmadan bir cümle yaz, seç, ⌥⇧T.
 
 Zaten bir `~/.hammerspoon/init.lua` dosyan varsa `init.lua` içeriğini onun sonuna ekle;
 `deasciify.js` yine `~/.hammerspoon/` altında durmalı.
@@ -106,7 +108,7 @@ olmalı. Kullanım: metni seç, ⌘C, ⌥⇧T, ⌘V. Yalnızca panoya dokunduğu
 
 ## Sınırlar
 
-- Algoritma yazım hatası düzeltmez; hatalı yazılmış kelimeye yanlış diakritik ekleyebilir.
+- Algoritma yazım hatası düzeltmez; hatalı yazılmış kelimeye yanlış Türkçe karakter ekleyebilir.
 - Şapkalı ayrımları (kar/kâr, hala/hâlâ) yapmaz, cümle başını büyük harfe çevirmez.
 - Metin içindeki İngilizce kelimelere ve koda genelde dokunmaz, ama garanti değil;
   kod bloklarını seçime katmamak en güvenlisi.

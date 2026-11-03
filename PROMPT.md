@@ -4,18 +4,18 @@ Aşağıdaki metni, depoyu klonladığın dizinde açtığın Claude Code oturum
 
 ---
 
-Bu Mac'te İngilizce klavye düzeniyle yazıyorum, Türkçe metinler diakritiksiz çıkıyor.
+Bu Mac'te İngilizce klavye düzeniyle yazıyorum, Türkçe karakterler (ı ğ ü ş ö ç İ) çıkmıyor.
 İstediğim: herhangi bir uygulamada metni seçip **Option+Shift+T**'ye bastığımda metnin doğru
-Türkçe karakterli hâlinin (ı ğ ü ş ö ç İ) yerine yapıştırılması. Bu dizin
-(https://github.com/muhammednursoy/turkce-duzelt klonu) bunun için gereken dosyaları içeriyor;
+Türkçe karakterli hâlinin yerine yapıştırılması. Bu dizin
+(https://github.com/muhammednursoy/turkcelestir klonu) bunun için gereken dosyaları içeriyor;
 README.md'yi oku.
 
 ## Dosyalar
 
 - `init.lua`: Hammerspoon yapılandırması. ⌥⇧T'ye basınca ⌘C gönderir, panodaki metni
   dönüştürür, ⌘V ile yapıştırır, 300 ms sonra eski pano içeriğini geri koyar.
-- `deasciify.js`: Deniz Yüret'in deasciify algoritmasının JavaScript portu + `run(argv)` giriş
-  noktası. macOS'un yerleşik JavaScript for Automation motoruyla
+- `deasciify.js`: [Deniz Yüret](https://github.com/emres/turkish-mode)'in deasciify algoritmasının
+  [JavaScript portu](https://github.com/meacer/deasciifier) + `run(argv)` giriş noktası. macOS'un yerleşik JavaScript for Automation motoruyla
   (`/usr/bin/osascript -l JavaScript`) çalışır; **Python, Node, Homebrew gerekmez.**
 
 Dosyaları değiştirme, yalnızca kopyala.
