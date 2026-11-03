@@ -43,6 +43,7 @@ function run(argv) {
 // Spans matched here are copied back verbatim after conversion: links, mail
 // addresses, paths, inline code, identifiers and handles are never Turkish words.
 var PROTECTED_PATTERNS = [
+  /```[\s\S]*?```/g,
   /`[^`\n]*`/g,
   /\b(?:https?|ftp|file):\/\/[^\s<>"']+/gi,
   /\bwww\.[^\s<>"']+/gi,
@@ -50,7 +51,15 @@ var PROTECTED_PATTERNS = [
   /(?<=^|\s)(?:~|\.{1,2})?\/[\w.\-\/~]+/g,
   /(?<=^|\s)[@#][\w.]*\w/g,
   /\b[A-Za-z]*[\d_]\w*\b/g,
-  /\b[a-z]+[A-Z][A-Za-z]*\b/g
+  /\b[a-z]+[A-Z][A-Za-z]*\b/g,
+  /\b[A-Z][a-z]+(?:[A-Z][A-Za-z]*)+\b/g,
+  /(?<=^|\s)--?[A-Za-z][\w-]*/g,
+  /\b[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+\b/g,
+  /\b[A-Za-z_]\w*(?:::\w+)+\b/g,
+  /\b[A-Za-z_]\w*\(\)/g,
+  /\$\{?[A-Za-z_]\w*\}?/g,
+  /<\/?[A-Za-z][\w-]*>/g,
+  /\{\{[^}]*\}\}/g
 ];
 
 function protectedSpans(text) {

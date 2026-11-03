@@ -29,11 +29,25 @@ Dönüşüm yalnızca kısayola basıldığında olur; normal kopyala-yapıştı
 
 ### Dokunulmayan parçalar
 
-Şunlar dönüşümden önce işaretlenir ve olduğu gibi bırakılır: bağlantılar (`https://…`, `www.…`),
-e-posta adresleri, dosya yolları (`/usr/bin`, `~/Belgeler`, `./x`), ters tırnak içindeki kod,
-içinde rakam ya da alt çizgi geçen kelimeler (`user_id`, `v2`), camelCase tanımlayıcılar
-(`isActive`), `@kullanıcı` ve `#etiket`. Böylece `ali.cicek@sirket.com` ya da `userId`
-"çiçek" ve "userİd" olmaz.
+Şunlar dönüşümden önce işaretlenir ve olduğu gibi bırakılır; liste sabit kelime içermez,
+hepsi biçim kuralıdır:
+
+- bağlantılar (`https://…`, `www.…`), e-posta adresleri, dosya yolları (`/usr/bin`, `~/Belgeler`, `./x`)
+- ters tırnak içindeki kod ve üç ters tırnakla açılan kod blokları
+- snake_case ve SCREAMING_SNAKE_CASE (`user_id`, `MAX_RETRY`), içinde rakam geçen kelimeler (`v2`, `0x1F`)
+- camelCase ve PascalCase (`isActive`, `UserService`)
+- nokta ve çift iki nokta ile bağlı adlar (`os.path`, `config.yaml`, `std::vector`)
+- boş parantezli çağrılar (`calistir()`), `$DEGISKEN` ve `${DEGISKEN}`
+- komut satırı bayrakları (`--verbose`, `-v`), `<etiket>`, `{{ şablon }}`
+- `@kullanıcı` ve `#etiket`
+
+Böylece `ali.cicek@sirket.com` "çiçek", `userId` "userİd" olmaz. Bilerek korunmayanlar: tireli
+kelimeler (`docker-compose` gibi İngilizce terimlere algoritma zaten dokunmuyor, `üç-dört kişi`
+gibi Türkçe tireli kelimelerin ise çevrilmesi gerekiyor), tamamı küçük harf tek kelimelik
+tanımlayıcılar (`main`, `origin`) ve argümanlı çağrılar (`print(x)`; `çocuklar(ın)` gibi
+parantezli ekler çevrilebilsin diye). Tamamı büyük harf kısaltmalar da algoritmaya gider:
+`ISIK` doğru olarak `IŞIK` olur ama `ISO` ve `API` de `İSO` ve `APİ` olabilir; bunlar için
+kişisel sözlük kullan.
 
 ### Kişisel sözlük
 
