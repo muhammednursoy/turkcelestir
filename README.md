@@ -18,9 +18,10 @@ no Python or Node required.*
 1. ⌥⇧T'ye basınca [Hammerspoon](https://www.hammerspoon.org) panonun o anki içeriğini saklar
    ve seçili metni ⌘C ile kopyalar.
 2. Metin, [Deniz Yüret](https://github.com/emres/turkish-mode)'in deasciify algoritmasının
-   [JavaScript portundan](https://github.com/meacer/deasciifier) (`deasciify.js`) geçer.
-   Dosya macOS'un yerleşik JavaScript for Automation motoruyla (`/usr/bin/osascript -l JavaScript`)
-   çalışır; ek bir çalışma zamanı kurulmaz.
+   [JavaScript portundan](https://github.com/meacer/deasciifier) geçer. Port değiştirilmeden
+   `vendor/deasciifier/` altında durur; bizim kodumuz `turkcelestir.js` onu yükler ve etrafına
+   aşağıdaki koruma ve sözlük katmanını koyar. Hepsi macOS'un yerleşik JavaScript for Automation
+   motoruyla (`/usr/bin/osascript -l JavaScript`) çalışır; ek bir çalışma zamanı kurulmaz.
 3. Sonuç ⌘V ile seçimin yerine yapıştırılır, yarım saniye sonra saklanan pano içeriği
    (metin, görüntü ya da dosya, ne varsa) geri yüklenir.
 
@@ -79,7 +80,7 @@ Dönüştürücüyü hiçbir şey kurmadan dene:
 
 ```bash
 T=$(mktemp); printf 'uc gun sonra gorusuruz' > "$T"
-LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript deasciify.js "$T"; rm -f "$T"
+LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript turkcelestir.js "$T"; rm -f "$T"
 ```
 
 Beklenen çıktı: `üç gün sonra görüşürüz`.
@@ -97,7 +98,7 @@ Yapılandırmayı yerleştir. Zaten bir `~/.hammerspoon/init.lua` dosyan varsa i
 üzerine yazmaz, sonuna ekler:
 
 ```bash
-mkdir -p ~/.hammerspoon && cp deasciify.js ~/.hammerspoon/
+mkdir -p ~/.hammerspoon && cp -R turkcelestir.js vendor ~/.hammerspoon/
 ```
 
 ```bash
@@ -142,7 +143,7 @@ politikaya aykırı olabilir.
 
 "Panoyu Al" → "Kabuk Betiği Çalıştır" → "Panoya Kopyala" adımlarıyla bir kısayol kur ve ona
 ⌥⇧T ata. Kabuk betiği, stdin'den gelen metni geçici bir dosyaya yazıp
-`LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript ~/.hammerspoon/deasciify.js <dosya>`
+`LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript ~/.hammerspoon/turkcelestir.js <dosya>`
 çalıştırır. Kısayollar > Ayarlar > Gelişmiş > "Betiklerin Çalıştırılmasına İzin Ver" açık
 olmalı. Kullanım: metni seç, ⌘C, ⌥⇧T, ⌘V. Yalnızca panoya dokunduğu için yine her uygulamada
 çalışır; bedeli iki tuş fazlası. Bu yol tarif edilmiştir, bu depoda uçtan uca test edilmemiştir.
@@ -164,6 +165,6 @@ olmalı. Kullanım: metni seç, ⌘C, ⌥⇧T, ⌘V. Yalnızca panoya dokunduğu
 
 - Algoritma: [Deniz Yüret, turkish-mode for Emacs](https://github.com/emres/turkish-mode) (MIT).
 - JavaScript portu: [Mustafa Emre Acer, deasciifier](https://github.com/meacer/deasciifier) (MIT).
-  `deasciify.js`'nin ilk 301 satırı bu deponun `08a830b` commit'indeki `js/deasciifier.js` ile
-  aynıdır; geri kalanı bu depoya ait giriş noktası, koruma ve sözlük katmanıdır.
-- Bu depo: MIT, bkz. [LICENSE](LICENSE).
+  `vendor/deasciifier/deasciifier.js` bu deponun `08a830b` commit'indeki `js/deasciifier.js`
+  dosyasının değiştirilmemiş kopyasıdır; ayrıntı [vendor/deasciifier/README.md](vendor/deasciifier/README.md).
+- Bu deponun kendi dosyaları: MIT, bkz. [LICENSE](LICENSE).

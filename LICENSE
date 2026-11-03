@@ -1,8 +1,10 @@
 The MIT License (MIT)
 
 Copyright (c) 2026 Muhammed Nursoy
-Copyright (c) 2020 Mustafa Emre Acer (deasciify.js, JavaScript port)
-Copyright (c) 2006, 2010, 2016 Deniz Yüret (deasciify algorithm and pattern table)
+
+This license covers the files of this repository outside the vendor/ directory.
+vendor/deasciifier/ is third-party code under its own MIT license, see
+vendor/deasciifier/LICENSE.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

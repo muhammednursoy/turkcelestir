@@ -14,10 +14,12 @@ README.md'yi oku.
 
 - `init.lua`: Hammerspoon yapılandırması. ⌥⇧T'ye basınca panoyu saklar, ⌘C gönderir, panodaki
   metni dönüştürür, ⌘V ile yapıştırır, yarım saniye sonra saklanan panoyu geri koyar.
-- `deasciify.js`: [Deniz Yüret](https://github.com/emres/turkish-mode)'in deasciify algoritmasının
-  [JavaScript portu](https://github.com/meacer/deasciifier) + giriş noktası, bağlantı/kod koruması
-  ve kişisel sözlük katmanı. macOS'un yerleşik JavaScript for Automation motoruyla
-  (`/usr/bin/osascript -l JavaScript`) çalışır; **Python, Node, Homebrew gerekmez.**
+- `turkcelestir.js`: giriş noktası, bağlantı/kod koruması ve kişisel sözlük katmanı; yanındaki
+  `vendor/deasciifier/deasciifier.js` dosyasını yükler.
+- `vendor/deasciifier/`: [Deniz Yüret](https://github.com/emres/turkish-mode)'in deasciify
+  algoritmasının [JavaScript portu](https://github.com/meacer/deasciifier), değiştirilmemiş üçüncü
+  taraf kod, kendi LICENSE ve README'siyle. Hepsi macOS'un yerleşik JavaScript for Automation
+  motoruyla (`/usr/bin/osascript -l JavaScript`) çalışır; **Python, Node, Homebrew gerekmez.**
 - `turkcelestir-sozluk.ornek.json`: isteğe bağlı kişisel sözlük örneği.
 
 Dosyaları değiştirme, yalnızca kopyala.
@@ -27,7 +29,7 @@ Dosyaları değiştirme, yalnızca kopyala.
 1. **Dönüştürücüyü tek başına doğrula** (hiçbir şey kurmadan):
    ```bash
    T=$(mktemp); printf 'ingilizce klavye kullaniyorum, uc gun sonra gorusuruz' > "$T"
-   LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript ./deasciify.js "$T"; rm -f "$T"
+   LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript ./turkcelestir.js "$T"; rm -f "$T"
    ```
    Beklenen çıktı: `ingilizce klavye kullanıyorum, üç gün sonra görüşürüz`. Çıkmazsa dur ve söyle.
 
@@ -39,7 +41,7 @@ Dosyaları değiştirme, yalnızca kopyala.
 3. **Yapılandırmayı yerleştir.** Mevcut bir `~/.hammerspoon/init.lua` varsa üzerine yazma,
    sonuna ekle ve bana söyle:
    ```bash
-   mkdir -p ~/.hammerspoon && cp deasciify.js ~/.hammerspoon/
+   mkdir -p ~/.hammerspoon && cp -R turkcelestir.js vendor ~/.hammerspoon/
    [ -e ~/.hammerspoon/init.lua ] && cat init.lua >> ~/.hammerspoon/init.lua || cp init.lua ~/.hammerspoon/
    ```
 
@@ -78,7 +80,7 @@ Dosyaları değiştirme, yalnızca kopyala.
    kurumsal cihazda önce BT politikasını kontrol etmemi hatırlat; betik çalıştırma izni de
    politikaya aykırı olabilir. macOS Kısayollar uygulamasında bir Hızlı Eylem kur: "Panoyu Al" →
    "Kabuk Betiği Çalıştır" (girdi stdin; betik stdin'i geçici bir dosyaya yazıp
-   `LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript ~/.hammerspoon/deasciify.js <dosya>`
+   `LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript ~/.hammerspoon/turkcelestir.js <dosya>`
    çalıştırır) → "Panoya Kopyala". Kısayola ⌥⇧T ata. Kısayollar > Ayarlar > Gelişmiş >
    "Betiklerin Çalıştırılmasına İzin Ver" açık olmalı. Kullanım: metni seç, ⌘C, ⌥⇧T, ⌘V.
    Bu yol tarif edilmiş, depoda uçtan uca test edilmemiştir; çalıştığını birlikte doğrularız.

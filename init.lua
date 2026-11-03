@@ -1,4 +1,4 @@
-local script = hs.configdir .. "/deasciify.js"
+local script = hs.configdir .. "/turkcelestir.js"
 
 local function shellQuote(s)
   return "'" .. s:gsub("'", "'\\''") .. "'"
