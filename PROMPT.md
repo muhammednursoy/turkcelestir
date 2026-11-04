@@ -5,14 +5,14 @@ Aşağıdaki metni, depoyu klonladığın dizinde açtığın Claude Code oturum
 ---
 
 Bu Mac'te İngilizce klavye düzeniyle yazıyorum, Türkçe karakterler (ı ğ ü ş ö ç İ) çıkmıyor.
-İstediğim: herhangi bir uygulamada metni seçip **Option+Shift+T**'ye bastığımda metnin doğru
+İstediğim: herhangi bir uygulamada metni seçip **Option+Shift+S**'ye bastığımda metnin doğru
 Türkçe karakterli hâlinin yerine yapıştırılması. Bu dizin
 (https://github.com/muhammednursoy/turkcelestir klonu) bunun için gereken dosyaları içeriyor;
 README.md'yi oku.
 
 ## Dosyalar
 
-- `init.lua`: Hammerspoon yapılandırması. ⌥⇧T'ye basınca panoyu saklar, ⌘C gönderir, panodaki
+- `init.lua`: Hammerspoon yapılandırması. ⌥⇧S'ye basınca panoyu saklar, ⌘C gönderir, panodaki
   metni dönüştürür, ⌘V ile yapıştırır, yarım saniye sonra saklanan panoyu geri koyar.
 - `turkcelestir.js`: giriş noktası, bağlantı/kod koruması ve kişisel sözlük katmanı; yanındaki
   `vendor/deasciifier/deasciifier.js` dosyasını yükler.
@@ -56,7 +56,7 @@ Dosyaları değiştirme, yalnızca kopyala.
    Erişilebilirlik izni MDM tarafından kilitliyse 6. adıma geç.
    Girişte otomatik başlatmayı açmak istersem Hammerspoon tercihlerinden kendim açarım; sen açma.
 
-5. **Uçtan uca test.** Elle: TextEdit'te Türkçe karaktersiz bir cümle yaz, seç, ⌥⇧T; cümle
+5. **Uçtan uca test.** Elle: TextEdit'te Türkçe karaktersiz bir cümle yaz, seç, ⌥⇧S; cümle
    düzelmeli, ardından ⌘V ile yapıştırınca eski pano içeriği gelmeli. Bunu ben yaparım.
    Otomatik test istersem: `~/.hammerspoon/init.lua` başına geçici olarak `require("hs.ipc")`
    satırı ekle, Hammerspoon'da "Reload Config", sonra (`hs` aracı Homebrew kurulumunda
@@ -81,8 +81,8 @@ Dosyaları değiştirme, yalnızca kopyala.
    politikaya aykırı olabilir. macOS Kısayollar uygulamasında bir Hızlı Eylem kur: "Panoyu Al" →
    "Kabuk Betiği Çalıştır" (girdi stdin; betik stdin'i geçici bir dosyaya yazıp
    `LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript ~/.hammerspoon/turkcelestir.js <dosya>`
-   çalıştırır) → "Panoya Kopyala". Kısayola ⌥⇧T ata. Kısayollar > Ayarlar > Gelişmiş >
-   "Betiklerin Çalıştırılmasına İzin Ver" açık olmalı. Kullanım: metni seç, ⌘C, ⌥⇧T, ⌘V.
+   çalıştırır) → "Panoya Kopyala". Kısayola ⌥⇧S ata. Kısayollar > Ayarlar > Gelişmiş >
+   "Betiklerin Çalıştırılmasına İzin Ver" açık olmalı. Kullanım: metni seç, ⌘C, ⌥⇧S, ⌘V.
    Bu yol tarif edilmiş, depoda uçtan uca test edilmemiştir; çalıştığını birlikte doğrularız.
 
 ## Kurallar
