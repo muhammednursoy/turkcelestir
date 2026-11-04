@@ -1,7 +1,7 @@
 # turkcelestir
 
 macOS'ta İngilizce klavyeyle yazılmış, Türkçe karakterleri olmayan metni tek kısayolla
-doğru hâline çevirir: metni seç, **⌥⇧S** (Option+Shift+S), metin yerinde değişir.
+doğru hâline çevirir: metni seç, **⌥⇧T** (Option+Shift+T), metin yerinde değişir.
 
 > `turkcelestir: pijamali hasta, yagiz sofore cabucak guvendi`
 > → `türkçeleştir: pijamalı hasta, yağız şoföre çabucak güvendi`
@@ -9,13 +9,13 @@ doğru hâline çevirir: metni seç, **⌥⇧S** (Option+Shift+S), metin yerinde
 Teams, Slack, tarayıcı, IDE, Notes: metin düzenlenebilen her uygulamada çalışır, çünkü
 uygulamanın kendisine değil panoya ve ⌘C/⌘V tuşlarına dayanır.
 
-*English: one-hotkey Turkish diacritics restoration for macOS (select text, press ⌥⇧S).
+*English: one-hotkey Turkish diacritics restoration for macOS (select text, press ⌥⇧T).
 Built on Hammerspoon and [Deniz Yüret's deasciifier](https://github.com/emres/turkish-mode);
 no Python or Node required.*
 
 ## Nasıl çalışır
 
-1. ⌥⇧S'ye basınca [Hammerspoon](https://www.hammerspoon.org) panonun o anki içeriğini saklar
+1. ⌥⇧T'ye basınca [Hammerspoon](https://www.hammerspoon.org) panonun o anki içeriğini saklar
    ve seçili metni ⌘C ile kopyalar.
 2. Metin, [Deniz Yüret](https://github.com/emres/turkish-mode)'in deasciify algoritmasının
    [JavaScript portundan](https://github.com/meacer/deasciifier) geçer. Port değiştirilmeden
@@ -133,7 +133,7 @@ killall Hammerspoon; open -a Hammerspoon
 ```
 
 Hammerspoon menü çubuğundan Console'u aç; `hs.accessibilityState()` `true` dönmeli.
-Bir metin alanında Türkçe karakter kullanmadan bir cümle yaz, seç, ⌥⇧S.
+Bir metin alanında Türkçe karakter kullanmadan bir cümle yaz, seç, ⌥⇧T.
 
 Girişte otomatik başlamasını istiyorsan Hammerspoon tercihlerinde "Launch Hammerspoon at login"
 seçeneğini aç; `init.lua` bu ayarı kendi başına değiştirmez.
@@ -143,7 +143,7 @@ seçeneğini aç; `init.lua` bu ayarı kendi başına değiştirmez.
 `init.lua` içindeki satır:
 
 ```lua
-hs.hotkey.bind({"alt", "shift"}, "S", turkceDuzelt)
+hs.hotkey.bind({"alt", "shift"}, "T", turkceDuzelt)
 ```
 
 Değiştirdikten sonra Hammerspoon menüsünden "Reload Config".
@@ -156,10 +156,10 @@ Kurumsal bir cihazda önce BT politikasını kontrol et; Kısayollar'da betik ç
 politikaya aykırı olabilir.
 
 "Panoyu Al" → "Kabuk Betiği Çalıştır" → "Panoya Kopyala" adımlarıyla bir kısayol kur ve ona
-⌥⇧S ata. Kabuk betiği, stdin'den gelen metni geçici bir dosyaya yazıp
+⌥⇧T ata. Kabuk betiği, stdin'den gelen metni geçici bir dosyaya yazıp
 `LC_ALL=en_US.UTF-8 /usr/bin/osascript -l JavaScript ~/.hammerspoon/turkcelestir.js <dosya>`
 çalıştırır. Kısayollar > Ayarlar > Gelişmiş > "Betiklerin Çalıştırılmasına İzin Ver" açık
-olmalı. Kullanım: metni seç, ⌘C, ⌥⇧S, ⌘V. Yalnızca panoya dokunduğu için yine her uygulamada
+olmalı. Kullanım: metni seç, ⌘C, ⌥⇧T, ⌘V. Yalnızca panoya dokunduğu için yine her uygulamada
 çalışır; bedeli iki tuş fazlası. Bu yol tarif edilmiştir, bu depoda uçtan uca test edilmemiştir.
 
 ## Sınırlar

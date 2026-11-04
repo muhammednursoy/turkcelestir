@@ -95,6 +95,6 @@ function turkceDuzelt()
   poll()
 end
 
-hs.hotkey.bind({"alt", "shift"}, "S", turkceDuzelt)
+hs.hotkey.bind({"alt", "shift"}, "T", turkceDuzelt)
 
-hs.alert.show("turkcelestir hazır: ⌥⇧S")
+hs.alert.show("turkcelestir hazır: ⌥⇧T")
